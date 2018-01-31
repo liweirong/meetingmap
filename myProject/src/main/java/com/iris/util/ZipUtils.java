@@ -31,7 +31,6 @@ public class ZipUtils {
 	  * @param encoding 压缩编码
 	  * @param comment 压缩注释
 	 */
-	@SuppressWarnings("null")
 	public static void compress(String sourcePath, String zipPath, String encoding, String comment)
 			throws FileNotFoundException, IOException {
 		// 判断要压缩的文件是否存在
