@@ -29,7 +29,7 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.rtf.RtfWriter2;
 
-public abstract class PdfUltity {
+public abstract class PDFUtils {
 
 	BaseFont base;  //基础字体
 	BaseFont baseContent; //仿宋基础字体
@@ -136,7 +136,7 @@ public abstract class PdfUltity {
 	public abstract void setContent()
 			throws Exception;
 
-	public PdfUltity(HttpServletResponse response) {
+	public PDFUtils(HttpServletResponse response) {
 		this.response = response;
 
 		try {
@@ -169,7 +169,7 @@ public abstract class PdfUltity {
 	 * @param startNum
 	 * @param maxNum
 	 */
-	public PdfUltity(HttpServletResponse response, int startNum, int maxNum) {
+	public PDFUtils(HttpServletResponse response, int startNum, int maxNum) {
 		this.response = response;
 
 		try {
