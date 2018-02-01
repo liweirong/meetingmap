@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>test</title>
 </head>
+<script type="text/javascript" src="libs/*"></script>
 <script>
     function selectUser() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("test").innerHTML = xmlhttp.responseText;
+
             }
         }
         xmlhttp.open("POST", "user/showUser.do", true);

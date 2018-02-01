@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="DBAudit_Web">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../Program Files/MyEclipse/MyEclipse-8.6"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="Java EE 5 Libraries.libraryclasspath">
+        <pathelement location="../../../Program Files/MyEclipse/Common/plugins/com.genuitec.eclipse.j2eedt.core_8.6.0.me201007292038/data/libraryset/EE_5/javaee.jar"/>
+        <pathelement location="../../../Program Files/MyEclipse/Common/plugins/com.genuitec.eclipse.j2eedt.core_8.6.0.me201007292038/data/libraryset/EE_5/jsf-impl.jar"/>
+        <pathelement location="../../../Program Files/MyEclipse/Common/plugins/com.genuitec.eclipse.j2eedt.core_8.6.0.me201007292038/data/libraryset/EE_5/jsf-api.jar"/>
+        <pathelement location="../../../Program Files/MyEclipse/Common/plugins/com.genuitec.eclipse.j2eedt.core_8.6.0.me201007292038/data/libraryset/EE_5/jstl-1.2.jar"/>
+    </path>
+    <path id="DBAudit_Web.classpath">
+        <path refid="Java EE 5 Libraries.libraryclasspath"/>
+        <fileset dir="WebRoot/WEB-INF/lib" includes="*.jar" />   
+    </path>
+    
+	<target name="init">
+		<tstamp>
+		    <format property="touch.time" pattern="yyyy-MM-dd-HH-mm-ss"/>
+		</tstamp>
+        <mkdir dir="WebRoot/WEB-INF/classes"/>
+        <copy includeemptydirs="false" todir="WebRoot/WEB-INF/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+		
+    <target name="clean">
+        <delete dir="WebRoot/WEB-INF/classes"/>
+    </target>
+	
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+	
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="WebRoot/WEB-INF/classes" 
+        	source="${source}" target="${target}"
+        	includeantruntime="true" encoding="UTF8">
+            <src path="src"/>
+            <classpath refid="DBAudit_Web.classpath"/>
+        </javac>
+    </target>
+	
+	<target name="AuditBSPack" depends="build">
+		<delete>
+			<fileset dir=".">
+			    <include name="AuditBS*.zip"/>
+				<include name="*.war"/>
+			</fileset>
+		</delete>
+		<war destfile="./AuditBS.war" basedir="./WebRoot/">
+		</war>
+		<zip destfile="AuditBSInstal-${touch.time}.zip" basedir=".">
+			<include name="AuditBS.war"/>
+		</zip>
+		<zip destfile="AuditBSUpdate-${touch.time}.zip" basedir="./WebRoot/"
+			excludes="**/lib/">
+		</zip>
+		
+		<!--<ftp password="ankkicarl" server="192.168.18.22" userid="carl"
+			port="22" remotedir="AutoBuild" depends="true" verbose="true" passive="true">
+			<fileset dir=".">
+				<include name="*.zip"/>
+			</fileset>
+		</ftp>
+		-->
+	</target>
+		
+</project>
