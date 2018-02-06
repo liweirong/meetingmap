@@ -2,8 +2,9 @@ package main.resource;
 
 import com.iris.model.User;
 import com.iris.model.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     /**
