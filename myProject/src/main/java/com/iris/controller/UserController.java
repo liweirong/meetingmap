@@ -28,6 +28,7 @@ public class UserController {
         response.setCharacterEncoding("UTF-8");
         long userId = Long.parseLong(request.getParameter("id"));
         User user = this.userService.selectUser(userId);
+
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().write(mapper.writeValueAsString(user));
         response.getWriter().close();
