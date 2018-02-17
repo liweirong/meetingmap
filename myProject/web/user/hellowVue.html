@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../resource/vue.js"></script>
+    <link rel="stylesheet" href="css/menu.css" type="text/css"></link>
+</head>
+<body>
+
+<template>
+    <div class="dialog">
+        <div class="loginPage"><h1>登录</h1>
+            <el-form>
+                <el-form-item label="user">
+                    <el-input type="text" id="user" v-model="formName.user"
+                              @blur="inputBlur('user',formName.user)"></el-input>
+                    <p>
+                        {{formName.userError}}
+                    </p></el-form-item>
+                <el-form-item label="password">
+                    <el-input type="password" id="password" v-model="formName.password"
+                              @blur="inputBlur('password',formName.password)"></el-input>
+                    <p>
+                        {{formName.passwordError}}
+                    </p></el-form-item>
+                <el-button type="primary" @click="submitForm('formName')" v-bind:disabled="formName.beDisabled">提交
+                </el-button>
+                <el-button @click="resetForm">重置</el-button>
+            </el-form>
+        </div>
+    </div>
+</template>
+
+
+<div id="example">
+    <ul>
+        <li v-for="item in items">
+            <h2 @click="showToggle(item)">{{item.name}}</h2>
+            <ul v-show="item.isSubShow">
+                <li v-for="subItem in item.subItems">
+                    <h3>{{subItem.name}}</h3>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el: "#example",
+        data: {
+            items: [
+                {
+                    name: '家用电器',
+                    isSubShow: false,
+                    subItems: [
+                        {
+                            name: '笔记本电脑'
+                        },
+                        {
+                            name: '台式电脑'
+                        },
+                        {
+                            name: '电视机'
+                        }
+                    ]
+                },
+                {
+                    name: '服装',
+                    isSubShow: false,
+                    subItems: [
+                        {
+                            name: '男士服装'
+                        },
+                        {
+                            name: '女士服装'
+                        },
+                        {
+                            name: '青年服装'
+                        }
+                    ]
+                }
+            ]
+        },
+        methods: {
+            showToggle: function (item) {
+                item.isSubShow = !item.isSubShow
+            }
+        }
+    })
+</script>
+</body>
+</html>

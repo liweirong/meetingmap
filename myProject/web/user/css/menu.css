@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+ul{
+    width: 200px;
+    height: auto;
+}
+h2{
+    background: green;
+    border: 1px solid #fff;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 24px;
+}
+h3{
+    background: #999;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #fff;
+    text-indent: 50px;
+}

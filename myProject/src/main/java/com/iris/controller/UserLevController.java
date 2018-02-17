@@ -1,29 +1,29 @@
 package com.iris.controller;
 
 /**
- * Created by lwrong on 2018/1/30.
+ * Created by lwrong on 2018/2/17.
  */
-import javax.servlet.http.HttpServletRequest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iris.model.User;
 import com.iris.service.IUserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/userLev")
+public class UserLevController {
 
     @Resource
     private IUserService userService;
 
     @RequestMapping("/showUser.do")
-    public void selectUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void User(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         long userId = Long.parseLong(request.getParameter("id"));
